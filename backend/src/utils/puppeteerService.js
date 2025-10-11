@@ -93,9 +93,23 @@ export const renderBannerToPNG = async (design, outputFilename) => {
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     };
     
-    // Use system Chrome if available
+    // Use system Chrome if available or configured
     if (process.env.PUPPETEER_EXECUTABLE_PATH) {
       launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    } else {
+      // Try to find system Chrome
+      const chromePaths = [
+        '/usr/bin/google-chrome',
+        '/usr/bin/chromium-browser',
+        '/usr/bin/chromium',
+        '/snap/bin/chromium'
+      ];
+      for (const path of chromePaths) {
+        if (fs.existsSync(path)) {
+          launchOptions.executablePath = path;
+          break;
+        }
+      }
     }
     
     browser = await puppeteer.launch(launchOptions);

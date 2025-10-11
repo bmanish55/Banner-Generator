@@ -88,10 +88,17 @@ export const renderBannerToPNG = async (design, outputFilename) => {
   
   let browser;
   try {
-    browser = await puppeteer.launch({
+    const launchOptions = {
       headless: 'new',
       args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
+    };
+    
+    // Use system Chrome if available
+    if (process.env.PUPPETEER_EXECUTABLE_PATH) {
+      launchOptions.executablePath = process.env.PUPPETEER_EXECUTABLE_PATH;
+    }
+    
+    browser = await puppeteer.launch(launchOptions);
     
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 630 });

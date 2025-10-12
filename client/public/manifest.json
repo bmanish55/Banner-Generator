@@ -1,0 +1,11 @@
+{
+  "short_name": "Banner Generator",
+  "name": "Marketing Banner Generator",
+  "description": "AI-powered web application for creating professional social media banners",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#667eea",
+  "background_color": "#ffffff",
+  "orientation": "portrait-primary"
+}

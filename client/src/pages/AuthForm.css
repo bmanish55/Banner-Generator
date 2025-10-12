@@ -1,0 +1,27 @@
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.form-input::placeholder {
+  color: #9ca3af;
+  opacity: 1; /* Firefox */
+}
+
+.form-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: #9ca3af;
+}
+
+.form-input::-ms-input-placeholder { /* Microsoft Edge */
+ color: #9ca3af;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #e73c7e;
+  box-shadow: 0 0 0 3px rgba(231, 60, 126, 0.2);
+}

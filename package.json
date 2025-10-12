@@ -1,0 +1,38 @@
+{
+  "name": "marketing-banner-generator",
+  "version": "1.0.0",
+  "description": "AI-powered social media banner generator",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "npm run build:client",
+    "build:client": "cd client && npm run build",
+    "view-db": "node view-database.js",
+    "reset-db": "del database.sqlite && echo Database reset! Restart server to recreate."
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.20.1",
+    "puppeteer": "^21.4.1",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "banner",
+    "generator",
+    "AI",
+    "social media",
+    "marketing"
+  ],
+  "author": "Team 2: Manish & Aishwarya",
+  "license": "MIT"
+}

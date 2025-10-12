@@ -1,0 +1,93 @@
+:root{
+  --bg:#f9fafb;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --accent:#e73c7e;
+}
+
+.dashboard-page {
+  min-height: calc(100vh - 80px);
+  background: #ffffff;
+}
+
+.dashboard-create-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--accent) !important;
+  color:white !important;
+  padding:10px 20px !important;
+  border-radius:10px !important;
+  box-shadow:0 8px 24px rgba(231,60,126,0.12);
+  transition:transform .16s ease, box-shadow .16s ease;
+}
+
+.dashboard-create-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(231,60,126,0.16);
+}
+
+.empty-state{
+  max-width:820px;
+  margin:30px auto;
+}
+
+/* Cards hover elevation */
+.stat-card, .banner-card, .card {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.stat-card:hover, .banner-card:hover, .card:hover{
+  transform: translateY(-6px);
+  box-shadow:0 20px 50px rgba(2,6,23,0.08);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px){
+  .dashboard-create-btn{ padding:8px 14px }
+  .empty-state{ margin:16px }
+}
+
+/* No background video - plain white background */
+
+/* Theme variables */
+:root {
+  --text: #111827;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --surface-2: #f3f4f6;
+}
+
+.theme-dark {
+  --text: #e6eef8;
+  --muted: #9aa6b2;
+  --surface: #0b1220;
+  --surface-2: #0f1724;
+  background: linear-gradient(180deg, #061426, #071020);
+}
+
+.theme-light {
+  background: #ffffff;
+}
+
+.theme-toggle-btn{
+  background:transparent;
+  border:1px solid rgba(0,0,0,0.06);
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.theme-dark .theme-toggle-btn{
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+.dashboard-page, .dashboard-page *{
+  color:var(--text);
+}
+
+/* Ensure action buttons have visible contrast in dark */
+.theme-dark .dashboard-create-btn{ background: var(--accent) !important; color: #fff !important }
+.theme-dark .actionBtn, .theme-dark .action-btn{
+  color: var(--text) !important;
+}

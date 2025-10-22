@@ -54,20 +54,27 @@ An AI-powered web application that generates professional social media banners f
    ```
 
 4. **Environment setup**
-   - Copy `.env.example` to `.env` if it exists, or create `.env` file:
-   ```env
-   NODE_ENV=development
-   PORT=5000
-   DB_PATH=./database.sqlite
-   JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
-   OPENAI_API_KEY=your-openai-api-key-here
-   FRONTEND_URL=http://localhost:3000
-   ```
+   - Create new .env in project Copy below `.env` file:
+```
+   # Environment Variables folder
+NODE_ENV=development
+PORT=5000
 
-5. **Get OpenAI API Key**
-   - Visit [OpenAI Platform](https://platform.openai.com/api-keys)
-   - Create an account and generate an API key
-   - Add it to your `.env` file
+# Database
+DB_PATH=./database.sqlite
+
+# JWT Secret (change this in production)
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+
+# OpenAI API Key (get from https://platform.openai.com/api-keys)
+OPENAI_API_KEY= your key
+
+# Unsplash API Key (get from https://unsplash.com/developers)
+UNSPLASH_ACCESS_KEY= your access key
+
+# App Settings
+FRONTEND_URL=http://localhost:3000
+```
 
 ## 🚀 Running the Application
 

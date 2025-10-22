@@ -209,6 +209,9 @@ npm run build
 npm start
 ```
 
+##Demo Video
+https://github.com/user-attachments/assets/8de4cab4-33e5-4a43-8e56-319f3051fb25
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -221,9 +224,9 @@ npm start
 
 This project is licensed under the MIT License.
 
-## 👥 Team
+## 👥 Devloped By
 
-**Team 2**: Manish & Aishwarya
+**Manish Bhavar:** mbhavar2121@gmail.com
 
 ## 🆘 Support
 

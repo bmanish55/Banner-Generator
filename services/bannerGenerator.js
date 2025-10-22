@@ -26,10 +26,63 @@ class BannerGenerator {
       const html = this.generateBannerHTML(designData, dimensions);
       
       // Use Puppeteer to convert HTML to image
-      const browser = await puppeteer.launch({ 
+      // Prepare robust launch options and try to fall back to a local Chrome if bundled Chromium isn't available
+      const launchOptions = {
         headless: 'new',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-      });
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          '--disable-dev-shm-usage',
+          '--disable-gpu',
+          '--single-process'
+        ],
+      };
+
+      // Allow overriding executable path via environment variable (useful on Windows or CI)
+      const envExec = process.env.PUPPETEER_EXECUTABLE_PATH;
+      if (envExec) {
+        launchOptions.executablePath = envExec;
+      } else {
+        // Try common locations for Chrome/Chromium based on platform
+        const possiblePaths = [];
+        if (process.platform === 'win32') {
+          possiblePaths.push(
+            'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+            'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+          );
+        } else if (process.platform === 'darwin') {
+          possiblePaths.push('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome');
+        } else {
+          // linux
+          possiblePaths.push('/usr/bin/google-chrome', '/usr/bin/chromium-browser', '/usr/bin/chromium');
+        }
+
+        // Check existence and set the first one found
+        for (const p of possiblePaths) {
+          try {
+            await fs.access(p);
+            launchOptions.executablePath = p;
+            break;
+          } catch (err) {
+            // ignore, try next
+          }
+        }
+      }
+
+      let browser;
+      try {
+        browser = await puppeteer.launch(launchOptions);
+      } catch (launchErr) {
+        // Attempt a second launch adding no-sandbox-less flags if initial launch failed
+        console.error('Puppeteer initial launch failed, retrying with relaxed flags:', launchErr.message || launchErr);
+        try {
+          launchOptions.args = launchOptions.args.concat(['--no-zygote']);
+          browser = await puppeteer.launch(launchOptions);
+        } catch (retryErr) {
+          console.error('Puppeteer retry launch failed:', retryErr);
+          throw retryErr;
+        }
+      }
       const page = await browser.newPage();
       
       // Set viewport to banner dimensions

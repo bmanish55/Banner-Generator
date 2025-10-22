@@ -6,7 +6,7 @@ const Landing = () => {
   return (
     <div style={styles.container}>
       <video autoPlay loop muted style={styles.videoBackground}>
-        <source src="/videos/bg.mp4" type="video/mp4" />
+        <source src="/videos/landing-background.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div style={styles.overlay}></div>
